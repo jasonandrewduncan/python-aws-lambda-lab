@@ -62,16 +62,16 @@ Connect to the database with these settings:
 - user: `lambda_lab`
 - password: `lambda_lab`
 
-For first-time setup, run:
+For first-time setup, run: (This creates the database tables.)
 
-1. `sql/init.sql`
+1. `sql/init.sql` 
 
-That creates the database tables.
-
-Later, after you have loaded staging data, run:
-
-1. `python src/load_from_staging_lambda.py`
-2. `python src/load_summary_lambda.py`
+table names are -
+- `staging_orders`
+- `staging_events`
+- `staging_logs`
+- `orders`
+- `daily_sales_summary`
 
 For interactive test reruns, you can reset table data first with:
 
@@ -96,10 +96,10 @@ Add this to your WSL `~/.bashrc` (or `~/.zshrc`) so the agent starts automatical
 if [ -z "$SSH_AUTH_SOCK" ]; then
   eval "$(ssh-agent -s)" > /dev/null
 fi
-ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
+ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_rsa
 ```
 
-Replace `id_ed25519` with your actual key filename (`id_rsa`, etc.) if different. After editing the file, run `source ~/.bashrc` (or open a new WSL terminal), then rebuild/reopen the devcontainer. You can verify it's working inside the container with:
+Replace `id_rsa` with your actual key filename (`ed25519`, etc.) if different. After editing the file, run `source ~/.bashrc` (or open a new WSL terminal), then rebuild/reopen the devcontainer. You can verify it's working inside the container with:
 
 ```bash
 ssh -T git@github.com
@@ -112,13 +112,6 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-On Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
 ### 3. Install dependencies
 
 ```bash
@@ -129,7 +122,7 @@ pip install -r requirements.txt
 
 Copy `.env.example` to `.env` or export the values manually.
 
-## Run the pipeline
+## Run the pipeline(s)
 
 ### Ingest raw files into staging
 
@@ -162,14 +155,6 @@ Open:
 ```text
 notebooks/sales_forecast.ipynb
 ```
-
-## Tables created
-
-- `staging_orders`
-- `staging_events`
-- `staging_logs`
-- `orders`
-- `daily_sales_summary`
 
 ## Notes
 
