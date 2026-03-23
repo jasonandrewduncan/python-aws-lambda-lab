@@ -41,6 +41,8 @@ python-aws-lambda-lab/
 
 ## Setup
 
+### TODO: this project works using a Dev Container; I've not maintained or continued testing other flows; so this readme needs to be adjusted
+
 ### 1. Start PostgreSQL
 
 ```bash
