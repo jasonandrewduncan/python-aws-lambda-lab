@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "lambda_lab",
+            "database": "lambda_lab",
+            "username": "lambda_lab"
+        }
+    ]
+}

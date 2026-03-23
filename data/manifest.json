@@ -1,0 +1,27 @@
+{
+  "project": "python-aws-lambda-data-lab-sample-data",
+  "generated_at": "2026-03-22T21:53:29.196301",
+  "files": {
+    "sample_orders.csv": {
+      "description": "Structured order line-item data with customer/product dimensions denormalized for staging.",
+      "row_count": 7100
+    },
+    "sample_events.json": {
+      "description": "Semi-structured customer/app events with nested properties.",
+      "record_count": 14198
+    },
+    "sample_logs.jsonl": {
+      "description": "JSON-lines application/service logs with INFO/WARN/ERROR levels and latency metadata.",
+      "record_count": 4721
+    },
+    "daily_sales_summary_seed.csv": {
+      "description": "Pre-aggregated daily sales trend seed for exploration and forecasting demos.",
+      "row_count": 180
+    }
+  },
+  "notes": [
+    "Data includes weekly seasonality, accelerating growth, promotional spikes, and a brief dip/recovery.",
+    "A few intentionally bad records were added for validation/reject-handling demonstrations.",
+    "Shared keys such as customer_id and order_id allow cross-source joins."
+  ]
+}

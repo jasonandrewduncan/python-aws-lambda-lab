@@ -1,0 +1,21 @@
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment files
+.env
+.envrc
+
+# Notebook metadata
+.ipynb_checkpoints/
+
+# Test/coverage caches (local-only)
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
