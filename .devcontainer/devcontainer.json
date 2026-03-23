@@ -7,8 +7,12 @@
     "postgres"
   ],
   "workspaceFolder": "/workspaces/python-aws-lambda-lab",
+  "mounts": [
+    "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent,type=bind"
+  ],
   "shutdownAction": "stopCompose",
   "remoteEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent",
     "DB_HOST": "postgres",
     "DB_PORT": "5432",
     "DB_NAME": "lambda_lab",

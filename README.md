@@ -83,6 +83,28 @@ The project includes a `.devcontainer` setup that starts the Python workspace co
 
 Inside the dev container, the database host is `postgres` instead of `localhost`, so the app can connect to the Compose service directly without any extra local setup.
 
+#### SSH / GitHub access from inside the dev container (WSL)
+
+The devcontainer uses SSH agent forwarding so you can `git push` to GitHub without copying your private key into the container. It reads `SSH_AUTH_SOCK` from your WSL environment at container-start time.
+
+**Prerequisite — WSL must have ssh-agent running before you open the devcontainer in VS Code.**
+
+Add this to your WSL `~/.bashrc` (or `~/.zshrc`) so the agent starts automatically:
+
+```bash
+# Start ssh-agent once per WSL session
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
+ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
+```
+
+Replace `id_ed25519` with your actual key filename (`id_rsa`, etc.) if different. After editing the file, run `source ~/.bashrc` (or open a new WSL terminal), then rebuild/reopen the devcontainer. You can verify it's working inside the container with:
+
+```bash
+ssh -T git@github.com
+```
+
 ### 2. Create and activate a virtual environment
 
 ```bash
